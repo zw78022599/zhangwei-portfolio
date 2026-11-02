@@ -39,7 +39,7 @@ portfolio/
 │  │   ├─ aigen-tea.webp           ← AI 生图 · 茶叶电商长图
 │  │   └─ aigen-tool.webp          ← AI 生图 · 全案工作流
 │  ├─ resume/zhangwei-resume.pdf   ← 点"个人简历下载"时下载的文件
-│  └─ video/                       ← 18 个视频，共 405 MB
+│  └─ video/                       ← 18 个视频，共 405 MB（线上实际由腾讯云 COS 提供）
 │      ├─ aigc/01-04.mp4           ← AIGC 广告片（横屏 1280×720）
 │      ├─ ec/01-05.mp4             ← 带货短视频（竖屏 720×1280）
 │      ├─ corp/01-05.mp4           ← 企业宣传
@@ -101,6 +101,28 @@ portfolio/
 | Pages 站点总量 | 1 GB（当前已用约 405 MB） |
 
 所以新视频建议同样按 720p、2–3 Mbps 导出，用 **GitHub Desktop** 推送（不要用网页上传，25 MB 很容易超）。
+
+### 视频托管：腾讯云 COS（线上加速）
+
+GitHub Pages 的服务器在境外，国内播放会缓冲。所以线上页面**不读仓库里的视频**，而是从腾讯云 COS 读取：
+
+- 存储桶：`zhangwei-portfolio-1523742771`，地域**广州**
+- 基础地址：`https://zhangwei-portfolio-1523742771.cos.ap-guangzhou.myqcloud.com/`
+- 桶内路径与仓库完全一致：`assets/video/<栏目>/<文件>.mp4`
+- 访问权限：**公有读私有写**（否则播放会 403）
+- 这行地址写在 `assets/js/main.js` 顶部：
+
+```js
+var VIDEO_HOST = location.hostname.indexOf('github.io') >= 0
+  ? 'https://zhangwei-portfolio-1523742771.cos.ap-guangzhou.myqcloud.com/'
+  : '';
+```
+
+也就是说：**线上（github.io）走 COS，本地双击 `index.html` 走本地原片**，互不影响、本地不耗流量。
+
+**换视频时怎么操作**：把新文件传到 COS 的同名路径（线上立刻生效），仓库里的副本只影响本地预览，可以不管。
+
+**费用**：存储 405 MB 几乎可以忽略；流量约 0.5 元/GB，一个人完整看一遍约 0.2 元。新账号一般有免费额度。
 
 ---
 

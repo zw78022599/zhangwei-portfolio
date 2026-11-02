@@ -8,6 +8,11 @@
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* 线上（GitHub Pages）从国内对象存储读视频，打开更快；本地双击 index.html 时仍用本地原片 */
+  var VIDEO_HOST = location.hostname.indexOf('github.io') >= 0
+    ? 'https://zhangwei-portfolio-1523742771.cos.ap-guangzhou.myqcloud.com/'
+    : '';
+
   /* ---------- 年份 ---------- */
   $$('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
@@ -125,7 +130,7 @@
     function loadClip(i, autoplay, initial) {
       var clip = clips[i];
       if (!clip) return;
-      var src = clip.dataset.src;
+      var src = VIDEO_HOST + clip.dataset.src;
 
       if (initial) {
         /* 首屏只更新封面文案，不预加载视频文件，避免一开始就请求大文件 */
