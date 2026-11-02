@@ -27,9 +27,11 @@ portfolio/
 ├─ assets/
 │  ├─ css/style.css                ← 样式、手机端断点、配色变量
 │  ├─ js/main.js                   ← 视频播放、导航高亮、菜单、大图弹层
-│  ├─ img/                         ← 全部图片（WebP，合计 2.7 MB）
+│  ├─ img/                         ← 全部图片（WebP，合计约 1.3 MB）
 │  │   ├─ portrait.webp            ← 首页人物（透明背景）
 │  │   ├─ paper.jpg                ← 纸质背景纹理
+│  │   ├─ paper-torn.webp           ← 撕纸白纸（预先渲染，替代 SVG 滤镜）
+│  │   ├─ paper-torn-soft.webp      ← 撕纸底层（米色）
 │  │   ├─ xhs-01/02/03.webp        ← 小红书三张截图
 │  │   ├─ corp-result.webp         ← 企业宣传 · 账号成果
 │  │   ├─ avatar-result-1/2/3.webp ← 数字人口播 · 成果与剪辑工程

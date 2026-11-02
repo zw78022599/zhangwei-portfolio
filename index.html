@@ -12,18 +12,6 @@
 <body>
 <a class="skip-link" href="#home">跳到主要内容</a>
 
-<!-- 纸质纹理与撕纸滤镜 -->
-<svg class="svg-defs" aria-hidden="true" focusable="false">
-  <filter id="tornEdge" x="-12%" y="-12%" width="124%" height="124%">
-    <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="4" seed="9" result="noise"/>
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
-  <filter id="tornSoft" x="-12%" y="-12%" width="124%" height="124%">
-    <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="3" seed="3" result="noise"/>
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
-</svg>
-
 <header class="site-header">
   <div class="scroll-progress" aria-hidden="true"><i></i></div>
   <div class="header-inner">

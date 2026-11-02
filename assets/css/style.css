@@ -54,8 +54,7 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: .05;
-  mix-blend-mode: multiply;
+  opacity: .06;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -91,9 +90,7 @@ button { font-family: inherit; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(251, 250, 245, .84);
-  -webkit-backdrop-filter: blur(14px) saturate(1.15);
-  backdrop-filter: blur(14px) saturate(1.15);
+  background: rgba(251, 250, 245, .96);
   border-bottom: 1px solid var(--green-line);
 }
 
@@ -216,9 +213,7 @@ button { font-family: inherit; }
   inset: 0;
   z-index: 99;
   padding: calc(var(--head-h) + 16px) var(--pad) 32px;
-  background: rgba(251, 250, 245, .985);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  background: #fbfaf5;
   transform: translateY(-102%);
   transition: transform .55s var(--ease);
   overflow-y: auto;
@@ -349,17 +344,16 @@ button { font-family: inherit; }
   aspect-ratio: 658 / 830;
   isolation: isolate;
 }
-.paper { position: absolute; border-radius: 3px; }
+.paper { position: absolute; background-repeat: no-repeat; background-position: center; background-size: 100% 100%; }
 .paper--back {
   inset: 4% 0 3% 4%;
-  background: #eeeada;
-  filter: url(#tornSoft);
+  background-image: url("../img/paper-torn-soft.webp");
   transform: rotate(-3.4deg);
 }
 .paper--front {
   inset: 7% 4% 4% 3%;
-  background: #fff;
-  filter: url(#tornEdge) drop-shadow(0 16px 30px rgba(62, 82, 34, .16));
+  background-image: url("../img/paper-torn.webp");
+  filter: drop-shadow(0 14px 26px rgba(62, 82, 34, .16));
   transform: rotate(1.2deg);
 }
 .portrait-img {
@@ -372,7 +366,6 @@ button { font-family: inherit; }
   z-index: 2;
   transform-origin: 50% 96%;
   animation: sway 7.5s ease-in-out infinite;
-  filter: drop-shadow(0 12px 20px rgba(50, 60, 30, .12));
 }
 @keyframes sway {
   0%, 100% { transform: rotate(-.8deg) translateY(0); }
@@ -1109,7 +1102,6 @@ button { font-family: inherit; }
   opacity: 0;
   transform: translateY(22px);
   transition: opacity .85s var(--ease), transform .85s var(--ease);
-  will-change: opacity, transform;
 }
 .reveal.is-in { opacity: 1; transform: none; }
 
