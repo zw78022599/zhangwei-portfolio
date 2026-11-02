@@ -682,6 +682,8 @@ button { font-family: inherit; }
   pointer-events: none;
 }
 .poster.is-missing .poster-hint { color: #a15a2a; }
+.phone-screen.is-missing::after { content: none; }
+.phone-screen.is-missing .video-ui { display: none; }
 .poster-num {
   font-family: var(--serif);
   font-size: 3.4rem;
