@@ -107,6 +107,7 @@
     var fallbackLabel = root.dataset.label || '作品';
     var phone = $('.phone', root);
     var index = 0;
+    var missing = false;
 
     if (!video || !clips.length) return;
 
@@ -138,6 +139,8 @@
         if (posterNum) posterNum.textContent = clip.dataset.num || ('0' + (i + 1));
         if (posterLabel) posterLabel.textContent = clip.dataset.title || fallbackLabel;
         if (poster) poster.classList.remove('is-missing');
+        if (screen) screen.classList.remove('is-missing');
+        missing = false;
         var hintEl = $('.poster-hint', root);
         if (hintEl) hintEl.textContent = '点击播放';
       }
@@ -187,20 +190,23 @@
     }
 
     video.addEventListener('playing', function () {
+      missing = false;
       if (poster) poster.classList.add('is-hidden');
-      if (screen) { screen.classList.add('is-playing'); screen.classList.remove('is-paused'); }
+      if (screen) { screen.classList.add('is-playing'); screen.classList.remove('is-paused', 'is-missing'); }
       syncPlaying(true);
     });
     /* 视频文件缺失（如云端未上传）时给出提示，避免点了没反应 */
     video.addEventListener('error', function () {
       if (!video.getAttribute('data-current')) return;
+      missing = true;
       if (poster) { poster.classList.remove('is-hidden'); poster.classList.add('is-missing'); }
-      if (screen) screen.classList.remove('is-paused', 'is-playing');
+      if (screen) { screen.classList.remove('is-paused', 'is-playing'); screen.classList.add('is-missing'); }
       var hint = $('.poster-hint', root);
       if (hint) hint.textContent = '该视频尚未上传，稍后补充';
       syncPlaying(false);
     });
     video.addEventListener('pause', function () {
+      if (missing) return;
       if (screen) { screen.classList.remove('is-playing'); screen.classList.add('is-paused'); }
       syncPlaying(false);
     });
